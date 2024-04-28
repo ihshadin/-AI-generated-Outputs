@@ -61,8 +61,9 @@
     <main>
       <section class="w-full max-w-[1600px] mx-auto px-3 sm:px-5 py-12">
         <div class="text-right">
-          <div class="dropdown dropdown-bottom dropdown-end bg-transparent">
+          <!-- <div class="dropdown dropdown-bottom dropdown-end bg-transparent">
             <div
+              onclick="toggleDropdown()"
               tabindex="0"
               role="button"
               class="bg-white hover:bg-white/90 text-white rounded-full p-0.5"
@@ -95,8 +96,85 @@
               </svg>
             </div>
             <ul
-              tabindex="0"
               class="dropdown-content z-[1] menu p-2 shadow shadow-white bg-black rounded-box w-52 mt-2"
+            >
+              <li><a>View Profile</a></li>
+              <li><a>Bookmark</a></li>
+              <li><a>Helpdesk</a></li>
+              <li><a>Settings</a></li>
+              <li>
+                <a>
+                  Logout
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                  >
+                    <path
+                      d="M9 3H5C4.46957 3 3.96086 3.21071 3.58579 3.58579C3.21071 3.96086 3 4.46957 3 5V19C3 19.5304 3.21071 20.0391 3.58579 20.4142C3.96086 20.7893 4.46957 21 5 21H9"
+                      stroke="#E855DE"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></path>
+                    <path
+                      d="M14 17L9 12L14 7"
+                      stroke="#E855DE"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></path>
+                    <path
+                      d="M9 12H21"
+                      stroke="#E855DE"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></path>
+                  </svg>
+                </a>
+              </li>
+            </ul>
+          </div> -->
+          <div class="bg-transparent relative transition-all">
+            <div class="flex justify-end">
+              <div
+                id="user_icon_btn"
+                class="bg-white hover:bg-white/90 text-white rounded-full p-0.5 cursor-pointer"
+              >
+                <svg
+                  enable-background="new 0 0 50 50"
+                  height="30px"
+                  id="Layer_1"
+                  version="1.1"
+                  viewBox="0 0 50 50"
+                  width="30px"
+                  xml:space="preserve"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                >
+                  <circle
+                    cx="25"
+                    cy="25"
+                    fill="none"
+                    r="24"
+                    stroke="#000"
+                    stroke-linecap="round"
+                    stroke-miterlimit="10"
+                    stroke-width="2"
+                  />
+                  <rect fill="none" height="50" width="50" />
+                  <path
+                    d="M29.933,35.528c-0.146-1.612-0.09-2.737-0.09-4.21c0.73-0.383,2.038-2.825,2.259-4.888c0.574-0.047,1.479-0.607,1.744-2.818  c0.143-1.187-0.425-1.855-0.771-2.065c0.934-2.809,2.874-11.499-3.588-12.397c-0.665-1.168-2.368-1.759-4.581-1.759  c-8.854,0.163-9.922,6.686-7.981,14.156c-0.345,0.21-0.913,0.878-0.771,2.065c0.266,2.211,1.17,2.771,1.744,2.818  c0.22,2.062,1.58,4.505,2.312,4.888c0,1.473,0.055,2.598-0.091,4.21c-1.261,3.39-7.737,3.655-11.473,6.924  c3.906,3.933,10.236,6.746,16.916,6.746s14.532-5.274,15.839-6.713C37.688,39.186,31.197,38.93,29.933,35.528z"
+                  />
+                </svg>
+              </div>
+            </div>
+            <ul
+              id="user_info_container"
+              class="z-20 menu p-2 shadow shadow-white bg-black rounded-box w-52 mt-2 absolute top-12 right-0 hidden"
             >
               <li><a>View Profile</a></li>
               <li><a>Bookmark</a></li>
@@ -182,9 +260,15 @@
                 class="border border-[#1b1b1d] rounded-3xl px-3 sm:px-6 py-5 sm:py-8 mt-2"
               >
                 <div
-                  class="transition-all flex justify-between items-center backdrop-blur-md text-white bg-[#ffffff05] hover:bg-[#ffffff0a] border border-[#ffffff0f] hover:border-[#ffffff33] rounded-md px-4 py-3 cursor-pointer shadow-[inset_0_-4px_12px_rgba(255,255,255,0.1)]"
+                  class="transition-all flex justify-between items-center backdrop-blur-md text-white bg-[#ffffff05] hover:bg-[#ffffff0a] border border-[#ffffff0f] hover:border-[#ffffff33] rounded-md px-4 cursor-pointer shadow-[inset_0_-4px_12px_rgba(255,255,255,0.1)]"
                 >
-                  <p class="text-xs">Paste AI Generated Content Here ↓</p>
+                  <!-- <p class="text-xs">Paste AI Generated Content Here ↓</p> -->
+                  <input
+                    type="text"
+                    class="text-xs bg-transparent outline-0 w-full py-3 placeholder:text-white"
+                    placeholder="Paste AI Generated Content Here ↓"
+                    id="past_ai_field"
+                  />
                   <div>
                     <svg
                       width="16"
@@ -230,10 +314,13 @@
                 >
                   <div class="flex flex-col gap-8 sm:gap-12">
                     <div
-                      class="w-full bg-white border border-[#66666647] p-5 rounded-[20px] text-black text-base focus:outline focus:outline-[#ffffff47]"
+                      class="transition-all backdrop-blur-md text-white bg-[#ffffff05] hover:bg-[#ffffff0a] border border-[#ffffff0f] hover:border-[#ffffff33] shadow-[inset_0_-4px_12px_rgba(255,255,255,0.1)] border border-[#66666647] p-5 rounded-[20px] text-black text-base focus:outline focus:outline-[#ffffff47]"
                     >
                       <span class="text-xs text-[#d6d6d6]">Humanized Text</span>
-                      <p class="text-base text-[#8f8f8f]">
+                      <p
+                        id="copy_text_content"
+                        class="text-base text-[#8f8f8f]"
+                      >
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                         Suspendisse varius enim in eros elementum tristique.
                         Duis cursus, mi quis viverra ornare, eros dolor interdum
@@ -242,13 +329,19 @@
                         Nunc ut sem vitae risus tristique posuere.
                       </p>
                     </div>
-                    <div class="text-right">
-                      <a
-                        href="#"
+                    <div class="text-right flex justify-end items-center gap-5">
+                      <p
+                        id="copy_text_success"
+                        class="text-teal-500 text-xs font-medium hidden"
+                      >
+                        Text copied to clipboard!
+                      </p>
+                      <button
+                        id="copy_text_btn"
                         class="bg-[#ffffff1f] bg-gradient-to-r from-[#ffffff14] to-[#8e78b014] border border-[#ffffff0f] rounded-3xl px-3 py-1 shadow-[inset_0_0.75px_0.75px_rgba(255,255,255,0.16)] font-medium text-white text-xs"
                       >
                         Copy
-                      </a>
+                      </button>
                     </div>
                   </div>
                 </div>
