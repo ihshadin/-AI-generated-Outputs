@@ -60,16 +60,17 @@
         outline-offset: 5px;
         background-color: #1378d1;
       }
+      /* Sidebar toggle */
       #dsb-container {
-        width: 50px;
+        width: 70px;
         align-items: center;
         transition: 0.5s;
+        padding-left: 15px;
+        padding-right: 15px;
       }
       #dsb-container.dsb-open {
         width: 300px !important;
         align-items: flex-start;
-        padding-left: 15px;
-        padding-right: 15px;
         transition: 0.5s;
       }
       #dsb-container p {
@@ -86,23 +87,24 @@
   </head>
   <body class="bg-black text-white font-[Montserrat] min-h-screen">
     <main>
-      <section class="flex">
+      <section class="flex px-3">
+        <!-- Sidebar toggle -->
         <div
           id="dsb-container"
-          class="h-screen pt-20 pb-6 flex flex-col justify-between transition-all duration-300"
+          class="h-[calc(100vh-100px)] mt-10 mb-5 py-4 flex flex-col justify-between transition-all duration-300 border border-[#1b1b1d] rounded-xl overflow-hidden"
         >
           <div
-            class="w-full px-2 flex items-center justify-between pb-6 border-b-2 border-[#eeedf22e]"
+            class="w-full flex items-center justify-between pb-6 border-b-2 border-[#eeedf22e]"
           >
             <p>Dashboard</p>
             <span
               id="dsb-btn"
-              class="cursor-pointer py-2 px-3 rounded-md hover:bg-[#272727]"
+              class="cursor-pointer text-lg w-[40px] h-[40px] rounded-md hover:bg-[#272727] flex flex-col items-center justify-center"
             >
               <i class="fa-solid fa-bars"></i>
             </span>
           </div>
-          <div class="w-full px-2">
+          <div class="w-full">
             <ul class="flex flex-col gap-1">
               <li>
                 <a
@@ -126,9 +128,31 @@
                   <p>Support</p>
                 </a>
               </li>
+              <li>
+                <a
+                  href="#"
+                  class="flex gap-3 items-center h-10 hover:bg-[#272727] px-2 rounded-lg group"
+                >
+                  <span class="text-[#eeedf280] group-hover:text-[#eeedf2]">
+                    <i class="fa-solid fa-users"></i>
+                  </span>
+                  <p>Community</p>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="flex gap-3 items-center h-10 hover:bg-[#272727] px-2 rounded-lg group"
+                >
+                  <span class="text-[#eeedf280] group-hover:text-[#eeedf2]">
+                    <i class="fa-solid fa-gear"></i>
+                  </span>
+                  <p>Plan Info</p>
+                </a>
+              </li>
             </ul>
           </div>
-          <div class="w-full px-2 flex items-center gap-3">
+          <div class="w-full flex items-center gap-3">
             <img
               class="w-10 h-10 object-cover rounded-md"
               src="https://assets-global.website-files.com/65d878f2f3d32c3b762b0dca/664c3a00d54fc8e2c201c025_profile.jpg"
@@ -137,6 +161,7 @@
             <p>Hey David</p>
           </div>
         </div>
+        <!-- body -->
         <div class="w-full px-3 sm:px-5 py-12">
           <div class="text-right">
             <div class="bg-transparent relative transition-all">
